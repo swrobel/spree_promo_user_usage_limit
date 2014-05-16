@@ -1,10 +1,10 @@
 # Run Coverage report
 require 'simplecov'
-# require 'coveralls'
-# SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-#   SimpleCov::Formatter::HTMLFormatter,
-#   Coveralls::SimpleCov::Formatter
-# ]
+require 'coveralls'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
 SimpleCov.start do
   add_filter 'spec/dummy'
   add_group 'Controllers', 'app/controllers'
