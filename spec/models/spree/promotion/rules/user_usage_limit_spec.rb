@@ -1,24 +1,62 @@
 require 'spec_helper'
 
 describe Spree::Promotion::Rules::UserUsageLimit do
+  let(:user) { create(:user) }
   let(:promotion) { create(:promotion) }
-  let(:rule) { Spree::Promotion::Rules::UserUsageLimit.create(promotion: promotion) }
+  let(:rule) { Spree::Promotion::Rules::UserUsageLimit.create }
 
-  context "#eligible?(order)" do
-    let(:order) { Spree::Order.new }
+  before do
+    promotion.rules << rule
+    promotion.actions << Spree::Promotion::Actions::CreateAdjustment.new
+  end
 
-    it "should be eligible if the user has not used the promotion before" do
-      user = mock_model(Spree::LegacyUser)
-      order.stub(:user => user)
+  context "without a user or guest email" do
+    let(:order) { mock_model(Spree::Order, :user => nil, :email => nil) }
 
-      rule.should be_eligible(order)
+    it { rule.should_not be_eligible(order) }
+  end
+
+  context "for a signed user" do
+    context "with no completed orders" do
+      let(:order) { mock_model(Spree::Order, :user => user) }
+
+      it { rule.should be_eligible(order) }
     end
 
-    it "should not be eligible if the user has used the promotion before" do
-      user = mock_model(Spree::LegacyUser)
-      order.stub(:user => user)
+    context "with a completed order" do
+      let(:order) { create(:completed_order_with_totals, user: user) }
 
-      rule.should be_eligible(order)
+      context "that didn't use the promo" do
+        it { rule.should be_eligible(order) }
+      end
+
+      context "that used the promo" do
+        before { create(:adjustment, adjustable: order, source: promotion.actions.first) }
+
+        it { rule.should_not be_eligible(order)}
+      end
+    end
+
+    context "with an incomplete order that used the promo" do
+      let(:order) { create(:order_with_totals, user: user) }
+      before { create(:adjustment, adjustable: order, source: promotion.actions.first) }
+
+      it { rule.should be_eligible(order) }
+    end
+  end
+
+  context "for a guest user" do
+    let(:email) { 'user@spreecommerce.com' }
+    let(:order) { create(:completed_order_with_totals, email: email) }
+
+    context "with no other orders" do
+      it { rule.should be_eligible(order) }
+    end
+
+    context "with another order" do
+      before { create(:adjustment, adjustable: order, source: promotion.actions.first) }
+
+      it { rule.should_not be_eligible(order) }
     end
   end
 end

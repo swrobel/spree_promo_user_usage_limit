@@ -5,9 +5,20 @@ module Spree
       class UserUsageLimit < PromotionRule
         preference :uses, :decimal, default: 1
 
+        def applicable?(promotable)
+          promotable.is_a?(Spree::Order)
+        end
+
         def eligible?(order, options = {})
-          action_ids = promotion.actions.select(:id).pluck(:id)
-          promotion_count = Spree::Adjustment.promotion.where(adjustable_id: Spree::Order.complete.select(:id).where(user_id: order.user.id).pluck(:id)).where(originator_id: action_ids).count
+          if order.user
+            order_ids = order.user.orders.complete.pluck(:id)
+          elsif order.email
+            order_ids = Spree::Order.complete.where(email: order.email).pluck(:id)
+          else # user or email required to check against previous orders
+            return false
+          end
+          action_ids = promotion.actions.pluck(:id)
+          promotion_count = Spree::Adjustment.promotion.where(adjustable_id: order_ids).where(source_id: action_ids).count
 
           promotion_count < preferred_uses
         end
