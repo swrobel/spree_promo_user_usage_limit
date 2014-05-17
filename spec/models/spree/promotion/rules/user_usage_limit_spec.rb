@@ -10,6 +10,18 @@ describe Spree::Promotion::Rules::UserUsageLimit do
     promotion.actions << Spree::Promotion::Actions::CreateAdjustment.new
   end
 
+  describe "#applicable?" do
+    context "with an order" do
+      let(:order) { mock_model(Spree::Order, :user => nil, :email => nil) }
+
+      it { rule.should be_applicable(order) }
+    end
+
+    context "with a promotion" do
+      it { rule.should_not be_applicable(promotion) }
+    end
+  end
+
   context "without a user or guest email" do
     let(:order) { mock_model(Spree::Order, :user => nil, :email => nil) }
 
