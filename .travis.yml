@@ -8,13 +8,13 @@ rvm:
   - 2.1.0
   - jruby-19mode
   - jruby-20mode
-  - rbx
+  - rbx-2
 env:
   - DB=sqlite
 language: ruby
 matrix:
   allow_failures:
-    - rvm: rbx
+    - rvm: rbx-2
     - rvm: jruby-20mode
 notifications:
   recipients:
