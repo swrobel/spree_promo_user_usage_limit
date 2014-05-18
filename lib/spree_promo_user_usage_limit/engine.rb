@@ -16,5 +16,10 @@ module SpreePromoUserUsageLimit
     end
 
     config.to_prepare &method(:activate).to_proc
+
+    initializer "spree_promo_user_usage_limit.register.promotion_rules" do |app|
+      app.config.spree.promotions.rules << Spree::Promotion::Rules::UserUsageLimit
+
+    end
   end
 end
