@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Provides basic authentication functionality for testing parts of your engine
-gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-2-stable'
+gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
+gem 'sqlite3', platforms: :ruby
 
 gemspec
