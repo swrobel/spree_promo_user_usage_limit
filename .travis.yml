@@ -15,6 +15,7 @@ language: ruby
 matrix:
   allow_failures:
     - rvm: rbx
+    - rvm: jruby-20mode
 notifications:
   recipients:
     - swrobel@gmail.com
