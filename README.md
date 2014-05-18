@@ -1,6 +1,6 @@
 Spree Promo User Usage Limit
 ======================
-[![Build Status](http://img.shields.io/travis/swrobel/spree_promo_user_usage_limit/2-2-stable.svg)](https://travis-ci.org/swrobel/spree_promo_user_usage_limit) [![Dependency Status](http://img.shields.io/gemnasium/swrobel/spree_promo_user_usage_limit.svg)](https://gemnasium.com/swrobel/spree_promo_user_usage_limit) [![Coverage Status](http://img.shields.io/coveralls/swrobel/spree_promo_user_usage_limit/2-2-stable.svg)](https://coveralls.io/r/swrobel/spree_promo_user_usage_limit) [![Code Climate](   http://img.shields.io/codeclimate/github/swrobel/spree_promo_user_usage_limit.svg)](https://codeclimate.com/github/swrobel/spree_promo_user_usage_limit)
+[![Build Status](http://img.shields.io/travis/swrobel/spree_promo_user_usage_limit/2-0-stable.svg)](https://travis-ci.org/swrobel/spree_promo_user_usage_limit) [![Dependency Status](http://img.shields.io/gemnasium/swrobel/spree_promo_user_usage_limit.svg)](https://gemnasium.com/swrobel/spree_promo_user_usage_limit) [![Coverage Status](http://img.shields.io/coveralls/swrobel/spree_promo_user_usage_limit/2-0-stable.svg)](https://coveralls.io/r/swrobel/spree_promo_user_usage_limit) [![Code Climate](http://img.shields.io/codeclimate/github/swrobel/spree_promo_user_usage_limit.svg)](https://codeclimate.com/github/swrobel/spree_promo_user_usage_limit)
 
 Adding this rule to a promo will allow you to set a limit on the number of completed orders for which a given user can apply it (default 1 use).
 
@@ -27,7 +27,7 @@ Versioning
 ----------
 Versions files the pattern MAJOR.MINOR.PATCH [SemVer-style](http://semver.org/). MAJOR.MINOR version will always match the Spree version that gem is compatible with. PATCH version is incremented as new bugfix releases of this gem come out, indepently of new Spree PATCH versions.
 
-For example, version 2.1.0 is compatible with the Spree 2.1.x series, while version 2.0.4 is compatible with the Spree 2.0.x series.
+For example, version 2.1.0 is compatible with the Spree 2.1.x series, while version 2.0.0 is compatible with the Spree 2.0.x series.
 
 You should not need to worry about this, as the gemspec has the appropriate constraints. But hey, the more you know.
 
