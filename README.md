@@ -4,6 +4,8 @@ Spree Promo User Usage Limit
 
 Adding this rule to a promo will allow you to set a limit on the number of completed orders for which a given user can apply it (default 1 use).
 
+![screenshot](screenshot.png)
+
 Installation
 ------------
 
