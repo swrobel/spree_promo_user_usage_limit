@@ -1,6 +1,6 @@
 Spree Promo User Usage Limit
 ======================
-[![Build Status](http://img.shields.io/travis/swrobel/spree_promo_user_usage_limit/2-2-stable.svg)](https://travis-ci.org/swrobel/spree_promo_user_usage_limit) [![Dependency Status](http://img.shields.io/gemnasium/swrobel/spree_promo_user_usage_limit.svg)](https://gemnasium.com/swrobel/spree_promo_user_usage_limit) [![Coverage Status](http://img.shields.io/coveralls/swrobel/spree_promo_user_usage_limit/2-2-stable.svg)](https://coveralls.io/r/swrobel/spree_promo_user_usage_limit) [![Code Climate](http://img.shields.io/codeclimate/github/swrobel/spree_promo_user_usage_limit.svg)](https://codeclimate.com/github/swrobel/spree_promo_user_usage_limit)
+[![Build Status](http://img.shields.io/travis/swrobel/spree_promo_user_usage_limit/2-2-stable.svg?style=flat)](https://travis-ci.org/swrobel/spree_promo_user_usage_limit) [![Dependency Status](http://img.shields.io/gemnasium/swrobel/spree_promo_user_usage_limit.svg?style=flat)](https://gemnasium.com/swrobel/spree_promo_user_usage_limit) [![Coverage Status](http://img.shields.io/coveralls/swrobel/spree_promo_user_usage_limit/2-2-stable.svg?style=flat)](https://coveralls.io/r/swrobel/spree_promo_user_usage_limit) [![Code Climate](http://img.shields.io/codeclimate/github/swrobel/spree_promo_user_usage_limit.svg?style=flat)](https://codeclimate.com/github/swrobel/spree_promo_user_usage_limit)
 
 Adding this rule to a promo will allow you to set a limit on the number of completed orders for which a given user can apply it (default 1 use).
 
@@ -22,6 +22,11 @@ Installation
 1. Add this rule to a promo and set the number of uses you want to allow
 
 1. Profit.
+
+TODO
+----
+
+* Friendlier error messages when promo can't be applied
 
 Versioning
 ----------
