@@ -3,7 +3,7 @@ module Spree
   class Promotion
     module Rules
       class UserUsageLimit < PromotionRule
-        preference :uses, :decimal, default: 1
+        preference :uses, :integer, default: 1
 
         def applicable?(promotable)
           promotable.is_a?(Spree::Order)
