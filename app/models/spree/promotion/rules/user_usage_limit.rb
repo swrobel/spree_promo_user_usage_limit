@@ -4,7 +4,7 @@ module Spree
     module Rules
       class UserUsageLimit < PromotionRule
         preference :uses, :integer, default: 1
-        attr_accessible :preferred_uses
+
         def applicable?(promotable)
           promotable.is_a?(Spree::Order)
         end
