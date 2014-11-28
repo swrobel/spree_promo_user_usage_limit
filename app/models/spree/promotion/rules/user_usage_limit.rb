@@ -4,7 +4,7 @@ module Spree
     module Rules
       class UserUsageLimit < PromotionRule
         preference :uses, :integer, default: 1
-
+        attr_accessible :preferred_uses
         def applicable?(promotable)
           promotable.is_a?(Spree::Order)
         end
@@ -18,7 +18,7 @@ module Spree
             return false
           end
           action_ids = promotion.actions.pluck(:id)
-          promotion_count = Spree::Adjustment.promotion.where(adjustable_id: order_ids).where(source_id: action_ids).count
+          promotion_count = Spree::Adjustment.promotion.where(adjustable_id: order_ids).where(originator_id: action_ids).count
 
           promotion_count < preferred_uses
         end

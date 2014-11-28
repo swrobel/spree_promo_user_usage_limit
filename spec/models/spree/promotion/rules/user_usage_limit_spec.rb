@@ -41,17 +41,17 @@ describe Spree::Promotion::Rules::UserUsageLimit do
       context "that didn't use the promo" do
         it { rule.should be_eligible(order) }
       end
-
+      #TODO TESTING IT
       context "that used the promo" do
-        before { puts order.inspect; create(:adjustment, adjustable: order, order: order, source: promotion.actions.first) }
+        before { puts order.inspect; create(:adjustment, adjustable: order, order: order, originator: promotion.actions.first) }
 
         it { rule.should_not be_eligible(order)}
       end
     end
-
+    # TODO TESTING IT
     context "with an incomplete order that used the promo" do
       let(:order) { create(:order_with_totals, user: user) }
-      before { create(:adjustment, adjustable: order, order: order, source: promotion.actions.first) }
+      before { create(:adjustment, adjustable: order, order: order, originator: promotion.actions.first) }
 
       it { rule.should be_eligible(order) }
     end
@@ -64,9 +64,9 @@ describe Spree::Promotion::Rules::UserUsageLimit do
     context "with no other orders" do
       it { rule.should be_eligible(order) }
     end
-
+    # TODO TESTING IT
     context "with another order" do
-      before { create(:adjustment, adjustable: order, order: order, source: promotion.actions.first) }
+      before { create(:adjustment, adjustable: order, order: order, originator: promotion.actions.first) }
 
       it { rule.should_not be_eligible(order) }
     end
