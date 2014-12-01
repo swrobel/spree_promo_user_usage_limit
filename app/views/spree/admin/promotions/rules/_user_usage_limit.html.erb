@@ -1,5 +1,5 @@
 <div class="field alpha omega eight columns">
   <label>
-    Can only be used <%= text_field_tag("#{param_prefix}[preferred_uses]", promotion_rule.preferred_uses, style: 'width: 40px;') %> times per user
+    <%= Spree.t('user_usage_limit.label', input: text_field_tag("#{param_prefix}[preferred_uses]", promotion_rule.preferred_uses, style: 'width: 40px;')).html_safe %>
   </label>
 </div>
