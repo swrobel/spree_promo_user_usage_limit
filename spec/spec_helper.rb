@@ -30,7 +30,7 @@ require 'ffaker'
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
 # Requires factories defined in spree_core
-require 'spree/testing_support/factories'
+require 'spree/core/testing_support/factories'
 
 # Requires factories defined in lib/spree_promo_user_usage_limit/factories.rb
 require 'spree_promo_user_usage_limit/factories'

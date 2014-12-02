@@ -36,22 +36,22 @@ describe Spree::Promotion::Rules::UserUsageLimit do
     end
 
     context "with a completed order" do
-      let(:order) { create(:completed_order_with_totals, user: user) }
+      let(:order) { create(:completed_order_with_totals_custom, user: user) }
 
       context "that didn't use the promo" do
         it { rule.should be_eligible(order) }
       end
 
       context "that used the promo" do
-        before { puts order.inspect; create(:adjustment, adjustable: order, originator: promotion.actions.first) }
+        before { create(:adjustment_custom, adjustable: order, originator: promotion.actions.first) }
 
         it { rule.should_not be_eligible(order)}
       end
     end
 
     context "with an incomplete order that used the promo" do
-      let(:order) { create(:order_with_totals, user: user) }
-      before { create(:adjustment, adjustable: order, originator: promotion.actions.first) }
+      let(:order) { create(:order_with_totals_custom, user: user) }
+      before { create(:adjustment_custom, adjustable: order, originator: promotion.actions.first) }
 
       it { rule.should be_eligible(order) }
     end
@@ -59,14 +59,14 @@ describe Spree::Promotion::Rules::UserUsageLimit do
 
   context "for a guest user" do
     let(:email) { 'user@spreecommerce.com' }
-    let(:order) { create(:completed_order_with_totals, email: email) }
+    let(:order) { create(:completed_order_with_totals_custom, email: email) }
 
     context "with no other orders" do
       it { rule.should be_eligible(order) }
     end
 
     context "with another order" do
-      before { create(:adjustment, adjustable: order, originator: promotion.actions.first) }
+      before { create(:adjustment_custom, adjustable: order, originator: promotion.actions.first) }
 
       it { rule.should_not be_eligible(order) }
     end

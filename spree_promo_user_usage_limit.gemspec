@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 1.3'
+  s.add_dependency 'spree_promo', '~> 1.3'
 
-  s.add_development_dependency 'factory_girl', '~> 4.4'
+  s.add_development_dependency 'factory_girl', '~> 4.1.0'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 2.13'
   s.add_development_dependency 'simplecov'
