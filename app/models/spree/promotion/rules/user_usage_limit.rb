@@ -18,7 +18,7 @@ module Spree
             return false
           end
           action_ids = promotion.actions.pluck(:id)
-          promotion_count = Spree::Adjustment.promotion.where(adjustable_id: order_ids).where(source_id: action_ids).count
+          promotion_count = Spree::Adjustment.promotion.where(adjustable_id: order_ids).where(originator_id: action_ids).count
 
           promotion_count < preferred_uses
         end
