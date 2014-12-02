@@ -1,6 +1,7 @@
 module SpreePromoUserUsageLimit
   class Engine < Rails::Engine
     require 'spree/core'
+    require 'spree/promo'
     isolate_namespace Spree
     engine_name 'spree_promo_user_usage_limit'
 
@@ -16,6 +17,14 @@ module SpreePromoUserUsageLimit
     end
 
     config.to_prepare &method(:activate).to_proc
+
+    # We need to define promotions rules here so extensions and existing apps
+    # can add their custom classes on their initializer files
+    initializer 'spree.promo.environment', :after => 'spree.environment' do |app|
+      app.config.spree.add_class('promotions')
+      app.config.spree.promotions = Spree::Promo::Environment.new
+      app.config.spree.promotions.rules = []
+    end
 
     initializer "spree_promo_user_usage_limit.register.promotion_rules" do |app|
       app.config.spree.promotions.rules << Spree::Promotion::Rules::UserUsageLimit
