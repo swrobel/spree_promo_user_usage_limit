@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'spree_core', github: 'spree/spree', branch: 'master'
+platforms :ruby_19, :jruby do
+  gem 'mime-types', '2.99.1'
+end
 
 gemspec
